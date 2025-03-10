@@ -1,0 +1,7 @@
+# DEVLOG - 3/9/205 9:08 PM
+
+# Project Overview
+Right now there are still a lot of aspects of the project that I am not sure of. I know that I need to create a logger, encyption program and driver. The logger will take care of "documentation" throughout the program to see what has been occuring. The encrpytion program will encrypt and decrpyt different words given by the user. The driver program connects these to programs by using pipes to connect their inputs and outputs. It will also provide a menu to be easily understood to the user what action they need to take.
+
+# Plan of Action
+I think that the first thing that I want to do is see if I can get the encyption program working. I think that this part of the program shouldn't be too hard to implement once I understand how the cipher works. It seems like the easiest starting point for now because I don't have to deal with connecting different programs through pipes yet. Once I am sure that the encryption program works, I plan to tackle the driver. I don't think that it would make sense to do the logger before doing the driver. This is probably where I will struggle the most just because I sometimes struggle with the creation of pipes. Then, I will focus on the logger last, most likely. However, that's just my plan for now and I will update the devlog once I actually start working on the different aspects of the project. 
