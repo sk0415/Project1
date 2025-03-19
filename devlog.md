@@ -27,3 +27,33 @@ I think I was able to get the logger formatted properly. I just used the datetim
 # 3/17/2025 8:30 PM
 Okay, I think that I am done for today. I was able to get the logger formatted properly and I think the encrpytion file is also done. All that is left is figuring out what the driver does for each of the different commands and when to communicate with the other files. However, I think that is a main part of the whole project so I will work on that once I have a bigger chunk of time to be able to focus on it.
 
+# 3/18/2025 10:18 AM
+Today I am working on the driver. I have to write functions to configure the password, show the history and encrypt/decrypt a string. I'm planning on working on configuring the password first because I think this is the base of the other functions. This way, I can figure out how to store the history and also how to store the current password, etc.
+
+# 3/18/2025 10:40 AM
+Okay, first I ended up working on the configurePassword function. There's two parts to it: if the user wants to use the history or not. I did when the user doesn't want to use the history. In this case, you just take in the new password and then pass to encryption to set as passkey and then make sure to log the action. The way that I'm checking if it's a success or not is by seeing what the encryption returns and if it starts with "RESULT" or "ERROR." Next, I have to do if they decide to use the history. I am just storing the history as a list. Currently, I appended the password to the history. I have to figure out how to print the history nicely with numbers to make it easier for the user.
+
+Actually, I just went back to read the instructions and I don't think the password should be in the history so I am going to take that out. I think the history should just be the strings that have been tried to encrypted/decrypted. 
+
+For this part, I think I actually have to write the showHistory function first. The way that I want to structure is that it will be a nice numbered list and if the history is empty, it'll just say "No History Avaliable." else the (Go Back) will be at the end of the list and all the entries will be part of the numbered list.
+
+# 3/18/2025 11:12 AM
+Okay, I think I was able to finish the configurePassword function and basically I just added the same functionality if they wanted to use the history but instead of manually entering a word, they enter a number from the history instead. The rest of the functionality is the same (sending command to encryption and logger).
+
+# 3/18/2025 7:50 PM
+Now I'm going to work on the encrypt function. I think that once I fully figure it out, decrypt should be very similar, just calling different commands from encryption.py. Basically, I'm going to ask if they want to use history and if they don't I have to make sure that I am adding on the new string into history. Then I have to call encryption.py and then log and print out results to standard output. I'm just gonna write the outline for now of the general logic. Also, I have to add a check to see if there is a password set currently at the start of the function and return if not.
+
+# 3/18/2025 7:59 PM
+I realized I don't have to add the check in because encryption.py will return an error if there is no passkey set. But I have to make sure it returns a valid response before adding it to history. 
+
+# 3/18/2025 8:13 PM
+Okay, there is no error checking implemented but I think I have the general logic of the encryption method solidified. Basically, it will either show the history and take in the input from the user. From there, I realized the rest of the functions are the same so they're done generally regardless of the first choice the user makes. I'm going to implement the same thing in the decryption method but just changing what is called in encryption.py file and then also what's logged in the logger. 
+
+# 3/18/2025 8:37 PM
+So I made the decrypt method and it's basically the exact same as the encrpyt just with two or three changes. Also, I went back to check that the input to the encrypt, decrypt, and password functions are just letters by using the isalpha() method. I think that's everything that needs to be done but I'm going to do a few test runs to make sure everything runs the way that I want it to. I think that there (hopefully) shouldn't be any major fixes but there are definitely going to be some small formatting things that I forgot about.
+
+# 3/18/2025 8:48 PM
+I just realized that in the example he only asked if user wants to use history in the encrypt, decrpyt and password functions if the history exists. I'm going to go back and add that in.
+
+# 3/18/2025 8:53 PM
+I ran through the example that he did in the project overview and mostly everything seems to be the same. However, I noticed that when he decrypted a string from the history he didn't store the result in the history. But I read through the instructions again and I'm pretty sure that the result of a decryption command should be saved in history, even if it came from history originally, so I think I will leave it like that. I'm going to run through another test run and also fix any small formatting stuff like adding new lines to make it easier to read tommorow and I think that should be enough to submit. I'm pretty sure that it works for cases when the input is what is expected but I'll run through some cases where the input has errors to make sure all the error checking is properly implemented.
