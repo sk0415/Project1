@@ -68,6 +68,10 @@ def configurePassword( encryption , logger ):
                 showHistory()
                 choice = input("Enter a number from history: ")
 
+                if not choice.isdigit() or int(choice) < 0 or int(choice) > len(history):
+                    print("Invalid choice. Try again.")
+                    return
+
                 if int(choice) == len( history ) + 1:
                     return
                 elif choice.isdigit() and 1 <= int(choice) <= len(history):
@@ -89,7 +93,7 @@ def configurePassword( encryption , logger ):
                 print("ERROR: Password must contain only letters (A-Z).")
                 return
 
-            response = encryption_command( encryption , f"PASS {currentPassword}" )
+            response = encryption_command( encryption , f"PASS {newPassword}" )
             if( response.startswith("RESULT") ):
                 log_message( logger , "SET_PASSWORD Success.")
                 print( "Password set succesfully.\n" )
@@ -109,7 +113,7 @@ def configurePassword( encryption , logger ):
             print("ERROR: Password must contain only letters (A-Z).")
             return
 
-        response = encryption_command( encryption , f"PASS {currentPassword}" )
+        response = encryption_command( encryption , f"PASS {newPassword}" )
         if( response.startswith("RESULT") ):
             log_message( logger , "SET_PASSWORD Success.")
             print( "Password set succesfully.\n" )
@@ -127,6 +131,10 @@ def encrypt( encryption , logger ):
 
             choice = input("Enter a number from history: ")
 
+            if not choice.isdigit() or int(choice) < 0 or int(choice) > len(history):
+                print("Invalid choice. Try again.")
+                return
+
             if int(choice) == len( history ) + 1:
                 return
             elif choice.isdigit() and 1 <= int(choice) <= len(history):
@@ -137,9 +145,9 @@ def encrypt( encryption , logger ):
                 return
 
         elif answer == "n":
-            word = input( "Enter string to encrypt: ").strip().lower()
+            word = input( "Enter string to encrypt: ").strip().upper()
 
-            if not word.isalpha():  
+            if not word or not word.isalpha():  
                 print("ERROR: Input must contain only letters (A-Z).")
                 return
             
@@ -148,9 +156,9 @@ def encrypt( encryption , logger ):
             print( "Invalid response.\n")
             return
     else: 
-        word = input( "Enter string to encrypt: ").strip().lower()
+        word = input( "Enter string to encrypt: ").strip().upper()
 
-        if not word.isalpha():  
+        if not word or not word.isalpha():  
             print("ERROR: Input must contain only letters (A-Z).")
             return
         
@@ -165,7 +173,7 @@ def encrypt( encryption , logger ):
     else:
         log_message( logger , "ENCRYPT Error : Passkey Not Set." )
 
-    print( encryptedWord )
+    print( "\n" + encryptedWord )
 
 
 def decrypt( encryption , logger ):
@@ -176,6 +184,9 @@ def decrypt( encryption , logger ):
         if answer == "y":
             showHistory()
             choice = input("Enter a number from history: ")
+            if not choice.isdigit() or int(choice) < 0 or int(choice) > len(history):
+                print("Invalid choice. Try again.")
+                return
             if int(choice) == len( history ) + 1:
                 return
             elif choice.isdigit() and 1 <= int(choice) <= len(history):
@@ -184,9 +195,9 @@ def decrypt( encryption , logger ):
                 print("Invalid Choice.")
                 return
         elif answer == "n":
-            word = input( "Enter string to decrypt: ").strip().lower()
+            word = input( "Enter string to decrypt: ").strip().upper()
 
-            if not word.isalpha():  
+            if not word or not word.isalpha():  
                 print("ERROR: Input must contain only letters (A-Z).")
                 return
             
@@ -196,9 +207,9 @@ def decrypt( encryption , logger ):
             print( "Invalid response.\n")
             return
     else:
-        word = input( "Enter string to decrypt: ").strip().lower()
+        word = input( "Enter string to decrypt: ").strip().upper()
 
-        if not word.isalpha():  
+        if not word or not word.isalpha():  
             print("ERROR: Input must contain only letters (A-Z).")
             return
         
